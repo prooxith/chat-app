@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JUSHT TYPE</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	<link rel="stylesheet" href="/styles.css">
+	<script src="http://192.168.0.109:8000/socket.io/socket.io.js"></script>
+	<script defer src="client.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+
+	<div class="grid-container">
+		<div class="grid-left-container">
+			<div class="left-header">
+				<div class="left-list flex-left">
+					<i class="fab fa-snapchat-square"></i>
+					<i class="fab fa-whatsapp-square"></i>
+					<i class="fab fa-facebook-messenger"></i>
+				</div>
+				<div class="center-name flex-center">
+					<div class="center-name-icon">
+						<i class="fas fa-at"></i>
+					</div>
+					<div class="icon-hr"></div>
+					<div class="center-name-name">
+						Vibez
+					</div>
+				</div>
+				<div class="right-members flex-right">
+					<div class="toggler">
+						<i class="fas fa-user">
+							<input type="checkbox" name="toggler" class="checkbox-toggler" onclick="showMem()">
+						</i>
+					</div>
+				</div>
+			</div>
+
+			<div class="messages-container" id="container-msg">
+				<div class="message">
+					<div class="message-profile">
+						<img class="msg-profile-img" src="./uploads/batmanbot.png" onclick="showImg(this)">
+					</div>
+					<div class="message-info">
+						<div class="message-top">
+							ChatBot
+						</div>
+						<div class="message-below">
+							OI OI OI ERWIN
+						</div>
+					</div>
+				</div>
+				
+
+			</div>
+			<div class="send-container-div">
+				<form action="#" class="send-container" id="send-container">
+					<div class="input">
+						<textarea type="text" contenteditable="true" name="messageInp" id="messageInp" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Type to send a message...thats obvious right?'" oninput="typing(this.value)" value=""autofocus></textarea>
+					</div>
+					<div class="submit">
+						<button type="submit" class="btn btn-outline-dark send-button"><i class="fas fa-caret-right"></i></button>
+					</div>
+				</form>
+			</div>
+			<div class="under-peri" draggable="false">
+				<div class="boxes">
+					<div class="peri-box box1"></div>
+					<div class="peri-box box2"></div>
+					<div class="peri-box box3"></div>
+				</div>
+				<div class="peri-info">
+					Batman is typing....
+				</div>
+			</div>
+		</div>
+
+		<div class="grid-right-container">
+			<div class="right-header">
+				<div class="right-header-profile">
+					<img src="./uploads/batmanbot.png" class="profile-img" onclick="showImg(this)">
+				</div>
+				<div class="right-header-info">
+					<div class="right-header-info-name">
+						Y/N
+					</div>
+					<div class="right-header-info-idk">
+						
+					</div>
+				</div>
+			</div>
+			<div class="member-list">
+				<div class="online-grid">
+					<div class="member-online">
+						<div class="member-online-text">
+							Online
+						</div>
+					</div>
+
+					<div class="online-members-all"></div>
+
+				</div>
+
+				<div class="offline-grid">
+					<div class="member-ofline">
+						<div class="member-ofline-text">
+							Offline
+						</div>
+					</div>
+
+					<div class="offline-members-all"></div>
+
+				</div>
+				
+			</div>
+		</div>
+
+	</div>
+	
+	<div class="return-chat">
+		<div class="return-icon">
+			<i class="fas fa-window-close">
+				<input type="checkbox" onclick="returnChat()" class="returnTogg">
+			</i>
+		</div>
+	</div>
+
+	<div class="image-viewer" onclick="hideImg(event)">
+		<div class="image-viewer-container">
+			<img src="./uploads/Levida.jpg" class="image-viewer-img">
+		</div>
+	</div>
+
+	<div class="preload-animation">
+		<div class="preload-animation-content">
+			<div class="loading-grid p1">I</div>
+			<div class="loading-grid p2">Am</div>
+			<div class="loading-grid p3">Batman</div>
+		</div>
+	</div>
+
+	<div class="login-container">
+		<div class="login-container-second">
+			<form class="loginForm">
+			  <div class="form-container">
+			    <h1 class="header h1">YOLO CHAT WITH ME</h1>
+			    <p class="header p" hidden>fill in the gaps bro with ur d(ck.</p>
+			    <hr>
+			    <label for="file-to-upload"><b>Profile Pik: </b></label>
+			    <input type="file" name="file-to-upload" id="psw" class="profilepic" required>
+			    
+			    <label for="name"><b>EWJARNAYM: </b></label>
+			    <input type="text" placeholder="Enter Name or go brrr" name="email" class="username" required>
+			    <hr>
+			    <button type="submit" class="registerbtn">Less goooo</button>
+			  </div>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		const grid = document.querySelector(".grid-container")
+		const rightGrid = document.querySelector(".grid-right-container")
+		const leftGrid = document.querySelector(".grid-left-container")
+		const icon = document.querySelector(".fa-users")
+		let width = document.documentElement.clientWidth
+		let height = document.documentElement.clientHeight
+		const returnChatDiv = document.querySelector('.return-chat')
+
+		window.addEventListener('resize', function(event){
+			console.log('batman')
+  			let width = document.documentElement.clientWidth
+			let height = document.documentElement.clientHeight
+			if (width <= 800){
+				console.log('boiya')
+				rightGrid.style.display = "none"
+				grid.style.gridTemplateColumns = "auto"
+			}else{
+				rightGrid.style.display = 'grid'
+				rightGrid.style.gridColumnStart = 2
+				grid.style.gridTemplateColumns = "auto 300px"
+			}
+		});
+
+		if (width <= 800){
+			rightGrid.style.display = "none"
+			grid.style.gridTemplateColumns = "auto"
+		}
+
+		const showMem=()=>{
+			const width = document.documentElement.clientWidth
+			if(width <= 800){
+				console.log('got')
+				returnChatDiv.style.display = 'block'
+				rightGrid.style.display = "grid"
+				leftGrid.style.display = "none"
+				grid.style.gridTemplateColumns = "auto"
+				rightGrid.style.gridColumnStart = 1
+			}else{
+				console.log('gotff')
+				const toggler = document.querySelector(".checkbox-toggler").checked
+				if(toggler){
+					rightGrid.style.display = 'none'
+					grid.style.gridTemplateColumns = "auto"
+					document.querySelector('.fa-user').style.color = 'tomato'
+					document.querySelector('.fa-user').style.border = '2px solid tomato'
+				}else{
+					document.querySelector('.fa-user').style.color = 'white'
+					document.querySelector('.fa-user').style.border = '2px solid white'
+					grid.style.gridTemplateColumns = "auto 300px"
+					rightGrid.style.display = "grid"
+				}
+				console.log(toggler)
+			}
+		}
+		const returnChat=()=>{
+			returnChatDiv.style.display = 'none'
+			rightGrid.style.display = "none"
+			leftGrid.style.display = "grid"
+			grid.style.gridTemplateColumns = "auto"
+		}
+
+		const elem = document.querySelector(".msg-profile-img")
+		const showImg = (value)=>{
+			console.log(value.src)
+			const imageViewer = document.querySelector(".image-viewer")
+			const imageViewerContainer = document.querySelector(".image-viewer-container")
+			const imageViewerImg = document.querySelector(".image-viewer-img")
+			imageViewerImg.src = value.src
+			imageViewer.style.visibility = "initial"
+			imageViewerContainer.style.animation = 'imgpop .5s 1'
+		}
+		const hideImg =(e)=>{
+			if(e.target !== e.currentTarget){
+			 	const imageViewerContainer = document.querySelector(".image-viewer-container")
+				imageViewerContainer.classList.toggle("zoomed")
+			}else{
+				const imageViewer = document.querySelector(".image-viewer")
+				const imageViewerContainer = document.querySelector(".image-viewer-container")
+				imageViewerContainer.style.animation = ''
+				imageViewer.style.visibility = "hidden"
+			}
+
+		}
+
+		setTimeout(function(){
+			const preloadDiv = document.querySelector('.preload-animation')
+			preloadDiv.style.animation = 'loadingBye 1s ease 1'
+			setTimeout(function(){
+				preloadDiv.remove()
+			}, 1000)
+		}, 3000)
+
+
+	</script>
+
+</body>
+</html>
